@@ -2,7 +2,7 @@ import nextcord
 from nextcord import Interaction
 from nextcord.ext import commands
 
-from util.templates import embed
+from util import embed
 
 class ExtensionManager(commands.Cog):
     def __init__(self, bot: commands.Bot):

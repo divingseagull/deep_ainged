@@ -3,19 +3,19 @@ from nextcord.ext import commands
 import os
 import json
 
-bot = commands.Bot()
-
 cwd = os.getcwd()
-settings: dict = json.load(f"{cwd}/settings.json")
-token_path: str = settings["token_path"]
+with open(f"{cwd}/settings.json", 'r', encoding="UTF-8") as settingsf:
+    settings: dict = json.load(settingsf)
 
-if os.name == "nt":
-    token_path = token_path.replace('/', '\\')
+token_path: str = settings["token"]["token_path"]
+owner_ids: list[int] = settings["owner_ids"]
+
+bot = commands.Bot(owner_ids=owner_ids)
 
 if __name__ == "__main__":
     load_state = {"success": 0, "tried": 0}
     for d in os.listdir("src"):
-        if not d.endswith(".py"):
+        if os.path.isdir(d):
             for ext in os.listdir(d):
                 if not ext.endswith(".py"):
                     continue

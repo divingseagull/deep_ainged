@@ -1,8 +1,12 @@
 {
     "extension": {
         "initial_load_exceptions": [
-
+            "util.embed"
         ]
     },
-    "token_path": " "
+    "token": {
+        "token_path_use_env": false,
+        "token_path": "./token"
+    },
+    "owner_ids": []
 }
